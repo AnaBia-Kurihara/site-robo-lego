@@ -794,7 +794,7 @@ code{
     .robo-area{ inset: 12px 12px 10px 12px; }
     .robo{ height: calc(42vh - 30px); top: calc(50% + 10px); }
     .etiqueta{ font-size: 10px; padding: 4px 10px; }
-    .carimbo{ font-size: 10px; }
+    .carimbo{ display: none; }
     .raio-x{ font-size: 10px; padding: 6px 10px; }
 
     .cap{
