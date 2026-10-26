@@ -3,177 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site do Lego</title>
+    <title>Blocktron — do papel ao 2º lugar no NEXT FIAP 2026</title>
+    <meta name="description" content="A trajetória do Blocktron, robô de batalha de balões: do primeiro esboço ao 2º lugar na final do NEXT FIAP 2026. Mecatrônica, Arduino Mega, app Android próprio e muita depuração.">
+    <meta property="og:title" content="Blocktron — do papel ao 2º lugar no NEXT FIAP 2026">
+    <meta property="og:description" content="Role a página e veja o robô se montar peça por peça: chassi, motores, Arduino, Bluetooth, sensores, LEDs, arma e carcaça.">
+    <meta property="og:image" content="https://anabia-kurihara.github.io/site-robo-lego/img/real/podio.jpg">
+    <meta property="og:url" content="https://anabia-kurihara.github.io/site-robo-lego/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
     <link rel="shortcut icon" href="img/site.SPRINT - cópia/LOGOS (1)/icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-   
-    <!--MENU FIXO , no topo-->
+
+    <!-- MENU FIXO, no topo -->
     <header class="hero-menu">
-            <div class="logo-topo"><img src="img/site.SPRINT - cópia/img.logo.png" ></div>   
-            <div class="lego-sumario"></div> 
-            <nav class="menu">
-                <ol>
-                    <li><a href="">Início</a></li>
-                    <li><a href="#Sobre o robô">Sobre o robô</a></li>
-                    <li><a href="#Desing do robô">Desing do robô</a></li>
-                    <li><a href="#Ver projeto">Ver projeto</a></li>
-                    <li><a href="#Arma do robô">Arma do robô</a></li>
-                    <li><a href="#Galeria">Galeria</a></li>
-                </ol>
-            </nav>
-       </header>   
+        <a href="#inicio" class="logo-topo"><img src="img/site.SPRINT - cópia/img.logo.png" alt="Blocktron"></a>
+        <nav class="menu">
+            <ol>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#ideia">Desenvolvimento</a></li>
+                <li><a href="#engenharia">Engenharia</a></li>
+                <li><a href="#arma">Arma</a></li>
+                <li><a href="#batalhas">Batalhas</a></li>
+                <li><a href="#final">Final</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+            </ol>
+        </nav>
+        <div class="lego-sumario"></div>
+        <div class="barra-progresso"><span id="progresso"></span></div>
+    </header>
 
-    <!--HERO, seção de capa -->
-    <section class="hero">
-        <header class="hero-head">
-            <img src="img/site.SPRINT - cópia/img.principal.png" class="img-topo">
-            <h1>O Robô de <span>Batalhas</span> <br> de <span>Balões</span></h1>
-            <h2>Mix perfeito de estratégia, LEGO e diversão</h2>
-        
-            <div class="botoes">
-                <a href="#Galeria" class="primeiro">Explorar Blocktron</a>
-                <a href="#Sobre o robô" class="segundo">Ver desenvolvimeto</a>
+    <!-- ===================== MONTAGEM: o robô se monta junto com o site ===================== -->
+    <main class="montagem">
+
+        <!-- robô fixo que acompanha as seções -->
+        <div class="palco-trilho">
+        <div class="palco escuro" id="palco" data-step="0">
+            <div class="robo-area">
+                <div class="mancha"></div>
+                <div class="etiqueta"><span id="hud-num">00</span>/09 · <b id="hud-nome">Esboço no papel</b></div>
+
+                <svg class="robo" viewBox="0 0 400 520" aria-label="Robô Blocktron sendo montado">
+                    <defs>
+                        <linearGradient id="casca" x1="0" x2="1">
+                            <stop offset="0" stop-color="#f2be00"/>
+                            <stop offset=".3" stop-color="#ffd736"/>
+                            <stop offset="1" stop-color="#e8b100"/>
+                        </linearGradient>
+                        <radialGradient id="balao" cx=".35" cy=".3" r=".8">
+                            <stop offset="0" stop-color="#ffc2e6"/>
+                            <stop offset=".45" stop-color="#ff48d4"/>
+                            <stop offset="1" stop-color="#b8128f"/>
+                        </radialGradient>
+                    </defs>
+
+                    <!-- ESBOÇO -->
+                    <g class="esboco">
+                        <rect x="84" y="150" width="232" height="210" rx="20"/>
+                        <path d="M76 154 L324 154 L318 128 Q200 110 82 128 Z"/>
+                        <ellipse cx="200" cy="60" rx="44" ry="52"/>
+                        <rect x="34" y="352" width="52" height="110" rx="18"/>
+                        <rect x="314" y="352" width="52" height="110" rx="18"/>
+                        <circle cx="200" cy="452" r="16"/>
+                        <line x1="58" y1="386" x2="342" y2="386"/>
+                        <circle cx="130" cy="214" r="18"/><circle cx="270" cy="214" r="18"/>
+                        <path d="M150 226 q16 -10 32 -2 M222 222 q16 -6 30 4 M182 296 q30 16 52 -6"/>
+                        <g class="cota">
+                            <line x1="34" y1="496" x2="366" y2="496"/>
+                            <line x1="34" y1="489" x2="34" y2="503"/>
+                            <line x1="366" y1="489" x2="366" y2="503"/>
+                        </g>
+                        <text x="200" y="516" class="anot">largura total</text>
+                        <text x="262" y="30" class="anot anot-esq">balão = alvo!</text>
+                        <text x="330" y="132" class="anot anot-esq">cabelo</text>
+                        <text x="2" y="210" class="anot anot-esq">arma ↑</text>
+                        <text x="2" y="30" class="anot anot-esq">rev. 01</text>
+                    </g>
+
+                    <!-- 2. CHASSI (MDF cortado a laser) -->
+                    <g class="peca" data-step="2">
+                        <rect x="58" y="378" width="284" height="16" rx="3" fill="#cfa86f" stroke="#9a7646"/>
+                        <g fill="#8a6a3e">
+                            <circle cx="76" cy="386" r="3"/><circle cx="118" cy="386" r="3"/>
+                            <circle cx="282" cy="386" r="3"/><circle cx="324" cy="386" r="3"/>
+                        </g>
+                        <g fill="#b9c0cb">
+                            <rect x="126" y="342" width="6" height="36"/><rect x="268" y="342" width="6" height="36"/>
+                        </g>
+                    </g>
+
+                    <!-- 3. RODAS + MOTORES TT + RODA BOBA -->
+                    <g class="peca" data-step="3">
+                        <rect x="86" y="398" width="62" height="26" rx="4" fill="#f2c200" stroke="#b38f00"/>
+                        <rect x="252" y="398" width="62" height="26" rx="4" fill="#f2c200" stroke="#b38f00"/>
+                        <g class="roda">
+                            <rect x="34" y="352" width="52" height="110" rx="18" fill="#1b1b1d" stroke="#3a3a40" stroke-width="2"/>
+                            <g class="banda" stroke="#2f2f35" stroke-width="4">
+                                <line x1="38" y1="368" x2="82" y2="368"/><line x1="38" y1="386" x2="82" y2="386"/>
+                                <line x1="38" y1="404" x2="82" y2="404"/><line x1="38" y1="422" x2="82" y2="422"/>
+                                <line x1="38" y1="440" x2="82" y2="440"/>
+                            </g>
+                            <rect x="48" y="384" width="24" height="46" rx="8" fill="#f2c200"/>
+                        </g>
+                        <g class="roda">
+                            <rect x="314" y="352" width="52" height="110" rx="18" fill="#1b1b1d" stroke="#3a3a40" stroke-width="2"/>
+                            <g class="banda" stroke="#2f2f35" stroke-width="4">
+                                <line x1="318" y1="368" x2="362" y2="368"/><line x1="318" y1="386" x2="362" y2="386"/>
+                                <line x1="318" y1="404" x2="362" y2="404"/><line x1="318" y1="422" x2="362" y2="422"/>
+                                <line x1="318" y1="440" x2="362" y2="440"/>
+                            </g>
+                            <rect x="328" y="384" width="24" height="46" rx="8" fill="#f2c200"/>
+                        </g>
+                        <rect x="186" y="396" width="28" height="34" rx="4" fill="#9aa3b2"/>
+                        <circle cx="200" cy="452" r="16" fill="#1b1b1d" stroke="#555"/>
+                        <circle cx="200" cy="452" r="5" fill="#9aa3b2"/>
+                    </g>
+
+                    <!-- 4. ARDUINO MEGA + MOTOR SHIELD + STEP-DOWN -->
+                    <g class="peca" data-step="4">
+                        <rect x="110" y="290" width="180" height="52" rx="4" fill="#0b6aa8" stroke="#3d9ae0"/>
+                        <rect x="118" y="294" width="120" height="6" fill="#111"/>
+                        <rect x="118" y="332" width="150" height="6" fill="#111"/>
+                        <rect x="228" y="306" width="34" height="20" fill="#1a1a1a"/>
+                        <text x="122" y="322" class="silk">MEGA 2560</text>
+                        <rect x="116" y="252" width="168" height="36" rx="3" fill="#1d2129" stroke="#ff48d4"/>
+                        <rect x="126" y="260" width="26" height="18" fill="#0c0c0c"/>
+                        <rect x="160" y="260" width="26" height="18" fill="#0c0c0c"/>
+                        <rect x="196" y="264" width="18" height="10" fill="#0c0c0c"/>
+                        <text x="222" y="274" class="silk silk-p">SHIELD</text>
+                        <rect x="152" y="350" width="54" height="24" rx="2" fill="#1f4fbf" stroke="#6d95ff"/>
+                        <circle cx="168" cy="362" r="7" fill="#333" stroke="#b8860b" stroke-width="2"/>
+                        <circle cx="198" cy="357" r="2.5" fill="#7fd0ff"/>
+                    </g>
+
+                    <!-- 5. BLUETOOTH -->
+                    <g class="peca" data-step="5">
+                        <rect x="248" y="206" width="38" height="42" rx="3" fill="#1565c0" stroke="#64b5f6"/>
+                        <path d="M254 212 h8 v8 h-8 v8 h8 v8 h-8" fill="none" stroke="#cfe6ff" stroke-width="2"/>
+                        <text x="256" y="244" class="silk silk-p">BT</text>
+                        <g class="ondas">
+                            <path d="M298 206 q12 14 0 28"/><path d="M308 198 q20 22 0 44"/><path d="M318 190 q28 30 0 60"/>
+                        </g>
+                    </g>
+
+                    <!-- 6. SENSORES LATERAIS -->
+                    <g class="peca" data-step="6">
+                        <rect x="16" y="292" width="16" height="56" rx="4" fill="#ff48d4"/>
+                        <rect x="368" y="292" width="16" height="56" rx="4" fill="#ff48d4"/>
+                        <circle class="sensor-led" cx="24" cy="320" r="4"/>
+                        <circle class="sensor-led" cx="376" cy="320" r="4"/>
+                        <path d="M32 320 H110 M368 320 H290" stroke="#ff48d4" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+                    </g>
+
+                    <!-- 8a. ARMA: uma estrutura de MDF — motor + engrenagem (por dentro) -->
+                    <g class="peca" data-step="8">
+                        <g class="engrenagem">
+                            <circle cx="176" cy="214" r="18" fill="#cfa86f" stroke="#9a7646" stroke-width="7" stroke-dasharray="4 3.1"/>
+                            <circle cx="176" cy="214" r="4" fill="#6b5130"/>
+                        </g>
+                        <rect x="148" y="226" width="24" height="18" rx="3" fill="#f2c200" stroke="#b38f00"/>
+                        <rect x="210" y="190" width="8" height="60" fill="#cfa86f" stroke="#9a7646"/>
+                    </g>
+
+                    <!-- 9. CARCAÇA LEGO -->
+                    <g class="peca casca" data-step="9">
+                        <rect x="84" y="150" width="232" height="210" rx="20" fill="url(#casca)" stroke="#c99a00" stroke-width="2"/>
+                        <rect x="100" y="168" width="16" height="170" rx="8" fill="#fff" opacity=".22"/>
+                        <path d="M150 226 q16 -10 32 -2" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round" fill="none"/>
+                        <path d="M222 222 q16 -6 30 4" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round" fill="none"/>
+                        <circle cx="166" cy="250" r="8" fill="#1a1a1a"/>
+                        <circle cx="238" cy="250" r="8" fill="#1a1a1a"/>
+                        <path d="M182 300 q30 16 54 -8" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round" fill="none"/>
+                        <!-- cabelo -->
+                        <path d="M76 156 L324 156 L318 128 Q200 110 82 128 Z" fill="#6d4c3d" stroke="#4e342a" stroke-width="2"/>
+                        <path id="franja" d="" fill="#6d4c3d" stroke="#4e342a" stroke-width="1.5" stroke-linejoin="round"/>
+                    </g>
+
+                    <!-- 8b. ARMA: barra com pontas (sai pela testa) -->
+                    <g class="peca" data-step="8">
+                        <g class="ataque">
+                            <rect x="196" y="176" width="12" height="60" fill="#cfa86f" stroke="#9a7646"/>
+                            <rect x="112" y="170" width="176" height="14" rx="3" fill="#ff48d4" stroke="#c0189b"/>
+                            <path id="pontas" d="" fill="#e9edf2" stroke="#8d96a3" stroke-width="1"/>
+                        </g>
+                    </g>
+
+                    <!-- 7. LEDs -->
+                    <g class="peca leds" data-step="7">
+                        <rect x="96" y="340" width="208" height="14" rx="7" fill="#15171c"/>
+                        <g class="led-row" id="led-row"></g>
+                    </g>
+
+                    <!-- 9. BALÃO -->
+                    <g class="peca balao" data-step="9">
+                        <path d="M200 110 l-6 8 h12 z" fill="#b8128f"/>
+                        <ellipse cx="200" cy="60" rx="44" ry="52" fill="url(#balao)"/>
+                        <ellipse cx="184" cy="38" rx="10" ry="16" fill="#fff" opacity=".35"/>
+                    </g>
+
+                    <line x1="0" y1="470" x2="400" y2="470" class="chao"/>
+                </svg>
+
+                <button class="raio-x" id="raio-x" type="button" aria-pressed="false">Visão raio-X</button>
+                <div class="carimbo">Montagem concluída</div>
             </div>
-        </header>
-    </section>  
-    
-    <!-- SEÇÕES -->
-
-    <!-- PRIMEIRA seção -->
-    <section class="cta" id="Sobre o robô">
-        
-        <h3>SOBRE O PROJETO</h3>
-        <h1>Desenvolvimeto</h1>
-        <h2>Primeiros desenhos</h2>
-        <h4>No início, criamos esboços simples para definir a ideia do robô <br> Nos inspiramos em uma cabeça estilo LEGO, com um balão na parte superior.  <br> diferentes formatos até chegar em um modelo mais estável, com três <br> rodas para facilitar a movimentação.</h4>
-        <img src="img/site.SPRINT - cópia/img.amarelo.png" class="primeira-pag">
-        <div class="cta-botao">
-            <a href="#Galeria">Explore os protótipos</a>
         </div>
-    </section>
-
-    
-    <!-- SEGUNDA seção -->
-    <section class="desing" id="Desing do robô">
-
-        <h3>Estilo LEGO</h3>
-        <h1>Apresentação <br><span>visual</span></h1>
-        <h2>Um projeto que une criatividade, design, tecnologia <br> 
-        e identidade visual.</h2>
-        <div class="cards"> 
-            <div class="card-vermelho">
-                <h4>Conceito</h4>
-                <h5>O LegoBot foi pensado como um robô simpático, criativo e acessível, <br> com linguagem visual inspirada em blocos LEGO.</h5>
-            </div>
-            <div class="card-amarelo">
-                <h4>Objetivo</h4>
-                <h5>Encantar a banca com um site personalizado, coerente<br> com o tema do projeto e visualmente forte já no primeiro <br> contato.</h5>
-            </div>
-            <div class="card-azul">
-                <h4>Diferencial</h4>
-                <h5>Uso de formas arredondadas, peças em relevo, cores vivas e blocos <br> modulares para reforçar a identidade LEGO.
-                </h5>
-            </div>
         </div>
-        <img src="img/site.SPRINT - cópia/Robô.amarelo.png.png" class="robô-png">
-    </section>
 
-    
-    <!-- TERCEIRA seção -->
-    <section class="eng" id="Ver projeto">
-        <h3>COMO FUNCIONA</h3>
-        <h1>Engenharia por trás</h1>
-        <div class="sessoes">
-            <div class="sessao-movimento">
-                <h2>Sistema de movimento</h2>
-                <h4>Iremos usar duas rodas motoras na <br>frente, e uma roda boba atrás, para <br> assim ajudar no equilíbrio e no <br>controle do movimovimento </h4>
-                <img src="img/site.SPRINT - cópia/img_eng.movimento.png" class="img-movimento">
+        <!-- 0. HERO -->
+        <section class="cap hero" id="inicio" data-step="0" data-nome="Esboço no papel">
+            <div class="cap-conteudo">
+                <span class="selo">2º lugar · NEXT FIAP 2026</span>
+                <h1>O Robô de <span>Batalhas</span><br>de <span class="rosa">Balões</span></h1>
+                <h2>Do primeiro rabisco no papel ao pódio da final. Role a página e veja o robô da equipe Blocktron — o nosso <strong class="apelido">Emmet</strong> — se montar, peça por peça.</h2>
+                <div class="botoes">
+                    <a href="#ideia" class="primeiro">Ver a montagem</a>
+                    <a href="#final" class="segundo">Ver a final</a>
+                </div>
+                <div class="numeros">
+                    <div><b>4</b><span>canais de motor</span></div>
+                    <div><b>60</b><span>LEDs endereçáveis</span></div>
+                    <div><b>250 ms</b><span>failsafe de conexão</span></div>
+                    <div><b>~15 s</b><span>ciclo da arma</span></div>
+                </div>
             </div>
-            <div class="sessao-sensores">
-                <h2>Sensores</h2>
-                <h4>Teremos 8 sensores, dois em cada <br>lado do robô, e para ajudar na <br>agilidade do acionamento do sensor, <br>instalaremos placas nas lateral, para <br>o acionamento ser mais eficiente </h4>
-                <img src="img/site.SPRINT - cópia/img_eng.sensores.png" class="img-sensores" alt="">
+        </section>
+
+        <!-- 1. IDEIA -->
+        <section class="cap creme" id="ideia" data-step="1" data-nome="Esboço e conceito">
+            <div class="cap-conteudo">
+                <h3>Sobre o projeto · Fase 01</h3>
+                <h1>Desenvolvimento</h1>
+                <p class="lead">Tudo começou no papel.</p>
+                <p>A regra é simples de explicar e difícil de executar: <strong>cada robô carrega um balão — estoure o do adversário e proteja o seu</strong>. Antes de qualquer fio, tudo começou em esboços no papel.</p>
+                <img src="img/site.SPRINT - cópia/img.amarelo.png" alt="Esboços iniciais do Blocktron" class="foto-cap sem-fundo">
+                <p>A identidade escolhida foi a <strong>cabeça de minifigura LEGO</strong>: o balão fica no topo, exatamente onde o adversário vai mirar — então o projeto inteiro gira em torno de proteger esse ponto e atacar o do outro.</p>
             </div>
-            <div class="sessao-controle">
-                <h2>Controle</h2>
-                <h4>O robô será cotrolado por um <br>cotrole, via bluetooth instalado no <br> celular </h4>
-                <img src="img/site.SPRINT - cópia/img_eng.controle.png" class="img-controle">
+        </section>
+
+        <!-- 2. CHASSI -->
+        <section class="cap creme" data-step="2" data-nome="Chassi em MDF">
+            <div class="cap-conteudo">
+                <h3>Estrutura · Fase 02</h3>
+                <h1>Chassi em MDF</h1>
+                <p>A base foi desenhada em CAD e exportada em <code>.dxf</code> para corte a laser em MDF. Ela define onde cada componente vive: motores embaixo, eletrônica no meio sobre espaçadores, balão no ponto mais alto.</p>
+                <figure class="foto-real">
+                    <img src="img/real/prototipo-mdf.jpg" alt="Protótipo do Blocktron em MDF na bancada" style="object-position: center 45%">
+                    <figcaption>Protótipo na bancada: base em MDF cortada a laser, motor com roda, regulador step-down, teste da fita de LED e o multímetro sempre por perto.</figcaption>
+                </figure>
+                <div class="cards">
+                    <div class="card-amarelo"><h4>Arquivo</h4><p><code>base_blocktron.dxf</code> → corte a laser</p></div>
+                    <div class="card-azul"><h4>Objetivo</h4><p>Centro de massa baixo para não tombar no impacto</p></div>
+                </div>
             </div>
-        </div>
-    </section>
-    
-    
-    <!-- QUARTA seção -->
-    <section class="arma" id="Arma do robô">
-        <h3> ESPECIFICAÇÕES ROBÔ</h3>
-        <h1>Arma escolhida </h1>
-        <h4>A arma do robô foi desenvolvida para estourar o balão do adversário por meio de um mecanismo de impacto lateral. Ela consiste em <br>uma barra rígida acoplada a um sistema rotacional, capaz de realizar movimentos rápidos e controlados. Posicionada estrategicamente <br>nas laterais do robô, a arma aumenta a área de alcance e a eficiência dos ataques. O projeto também considera estabilidade,<br> resistência estrutural e boa distribuição de peso, garantindo desempenho consistente durante as competições.</h4>
-        <img src="img/site.SPRINT - cópia/img.arma.png" class="img-arma">
-        <img src="img/site.SPRINT - cópia/img.arma.2.png" class="img-arma2">
-        <div class="div-arma">
-            <div class="modo">
-                <h2>Modo de funcionamento</h2>
-                <h4>O funcionamento é baseado em movimento rotacional controlado. <br>Etapas:</h4>
-                <ol>
-                    <li>O operador envia comando via controle.</li>
-                    <li>O microcontrolador envia sinal PWM para o servo.</li>
-                    <li>O servo gira rapidamente em determinado ângulo.</li>
-                    <li>A barra de aço acompanha o movimento e atinge o oponente.</li>
-                    <li>O servo retorna para posição inicial ou continua rotacionando.</li>
-                </ol>
-                <h4>Golpe Controlado:</h4>
-                <ul>
-                    <li>Servo gira apenas quando acionado. Economiza energia. Mais controle estratégico.</li>
+        </section>
+
+        <!-- 3. RODAS -->
+        <section class="cap creme" id="engenharia" data-step="3" data-nome="Tração diferencial">
+            <div class="cap-conteudo">
+                <h3>Como funciona · Fase 03</h3>
+                <h1>Sistema de movimento</h1>
+                <p>Duas rodas motoras e uma roda boba: <strong>tração diferencial</strong>. Cada lado tem seu motor DC com caixa de redução, e a velocidade é controlada por PWM de <code>0</code> a <code>255</code>.</p>
+                <figure class="foto-real">
+                    <img src="img/real/compra-pecas.jpg" alt="Peças compradas: rodas, roda boba, baterias, carregador e fita isolante" style="object-position: center 70%">
+                    <figcaption>Dia de compras na Santa Ifigênia: rodas, roda boba, baterias 18650, carregador e fita isolante.</figcaption>
+                </figure>
+                <figure class="video-cap">
+                    <video controls muted playsinline preload="metadata" poster="videos/teste-movimento.png" src="videos/teste-movimento.mp4"></video>
+                    <figcaption>Primeiro teste de movimento: só o chassi de MDF, o Arduino e as rodas, ainda sem carcaça.</figcaption>
+                </figure>
+                <div class="card-vermelho desafio">
+                    <h4>O problema</h4>
+                    <p>Girar no lugar (uma roda para frente, outra para trás) fazia o robô <em>parar</em> para virar — e um robô parado na arena é um balão estourado.</p>
+                    <h4>A solução</h4>
+                    <p>Se o robô já está andando quando chega o comando de curva, a roda de fora mantém a potência e a de dentro só desacelera. Resultado: curva em arco, sem perder velocidade.</p>
+                </div>
+<pre class="codigo"><code><span class="c">// roda de dentro numa curva em movimento</span>
+<span class="k">const int</span> POTENCIA_CURVA_RODA_DE_DENTRO = <span class="n">60</span>;
+
+<span class="k">if</span> (modo_linear == <span class="n">1</span>) {   <span class="c">// já andando pra frente</span>
+  aciona_motor_b(<span class="n">1</span>, <span class="n">1</span>, POTENCIA_CURVA_RODA_DE_DENTRO);
+  aciona_motor_b(<span class="n">3</span>, <span class="n">1</span>, <span class="n">225</span>);
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- 4. ARDUINO -->
+        <section class="cap creme" data-step="4" data-nome="Arduino Mega + Motor Shield">
+            <div class="cap-conteudo">
+                <h3>Cérebro · Fase 04</h3>
+                <h1>Arduino Mega 2560 + Motor Shield</h1>
+                <p>O Mega foi escolhido pelas <strong>portas seriais extras</strong> (o Bluetooth fica na <code>Serial3</code>, deixando a USB livre para depuração) e pelos pinos de sobra. O shield de motor controla 4 motores (PWM nos pinos 11, 3, 5 e 6); os sentidos de rotação passam por um registrador de deslocamento <code>74HC595</code>, que nós escrevemos bit a bit. A alimentação vem de baterias, com um regulador step-down ajustando a tensão.</p>
+                <div class="card-vermelho desafio">
+                    <h4>O bug mais difícil do projeto</h4>
+                    <p>O robô respondia <em>atrasado</em> aos comandos. Depois de muito teste, achamos a causa: cada chamada de motor fazia 17 <code>delay(1)</code> para enviar os bits ao 74HC595 — <strong>~17 ms por motor</strong>, quando o chip aceita pulsos de nanossegundos.</p>
+                    <h4>A correção</h4>
+                    <p>Trocar por <code>delayMicroseconds(2)</code>: ~1000× mais rápido, e o robô passou a responder na hora.</p>
+                </div>
+<pre class="codigo"><code><span class="k">for</span> (i = <span class="n">0</span>; i &lt;= <span class="n">7</span>; i++) {
+  digitalWrite(DIR_SER, LOW);
+  <span class="k">if</span> ((valor_b_temp &amp; <span class="n">0b10000000</span>) == <span class="n">128</span>) digitalWrite(DIR_SER, HIGH);
+  <span class="del">delay(1);</span> <span class="add">delayMicroseconds(2);</span>
+  digitalWrite(DIR_CLK, HIGH);
+  <span class="del">delay(1);</span> <span class="add">delayMicroseconds(2);</span>
+  digitalWrite(DIR_CLK, LOW);
+  valor_b_temp = valor_b_temp * <span class="n">2</span>;
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- 5. BLUETOOTH + APP -->
+        <section class="cap creme" data-step="5" data-nome="Bluetooth + app próprio">
+            <div class="cap-conteudo">
+                <h3>Controle · Fase 05</h3>
+                <h1>Bluetooth e controle por joystick</h1>
+                <p>O módulo Bluetooth fica na <code>Serial3</code> a 9600 baud. No começo o controle era por botões <code>w/a/s/d</code>: só uma direção por vez, sem controle de velocidade. Depois passamos a usar um <strong>joystick no app RoboRemo</strong>, que envia uma linha por eixo — <code>x &lt;valor&gt;</code> e <code>y &lt;valor&gt;</code>, de −100 a 100 — repetidamente enquanto o dedo está na tela. O Arduino entende os dois formatos.</p>
+                <p>No Arduino, os eixos viram a velocidade de cada roda com mixagem <em>arcade drive</em>. Teste aqui — arraste o joystick:</p>
+
+                <div class="joy-demo">
+                    <div class="joy" id="joy"><div class="joy-knob" id="joy-knob"></div></div>
+                    <div class="joy-saida">
+                        <div class="serial" id="joy-serial">x 0<br>y 0</div>
+                        <div class="motor-bar"><span>ESQ</span><div><i id="bar-esq"></i></div><b id="val-esq">0</b></div>
+                        <div class="motor-bar"><span>DIR</span><div><i id="bar-dir"></i></div><b id="val-dir">0</b></div>
+                        <code class="formula">esq = y + x · dir = y − x</code>
+                    </div>
+                </div>
+
+                <figure class="video-cap">
+                    <video controls muted playsinline preload="metadata" poster="videos/teste-app.png" src="videos/teste-app.mp4"></video>
+                    <figcaption>Teste do app no celular pilotando o protótipo via Bluetooth.</figcaption>
+                </figure>
+
+                <div class="card-azul desafio">
+                    <h4>Segurança</h4>
+                    <p>Se a conexão cair, o robô não pode sair andando sozinho. O app reenvia o comando a cada 100 ms; se o Arduino ficar <strong>250 ms</strong> sem receber nada, para os motores.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SENSORES -->
+        <section class="cap creme" data-step="6" data-nome="Sensores de contato">
+            <div class="cap-conteudo">
+                <h3>Percepção · Fase 06</h3>
+                <h1>Sensores que disparam a arma</h1>
+                <p>São <strong>dois sensores de cada lado, colados na base</strong> — e mesmo assim qualquer toque na lateral do robô aciona a arma, graças ao jeito que a carcaça foi projetada (veja na fase 09). O sensor entra no pino <code>10</code> com <code>INPUT_PULLUP</code>: em repouso lê <code>HIGH</code>; quando algo encosta, vai a <code>LOW</code> — e a arma dispara <strong>automaticamente</strong>, mais rápido que qualquer reflexo humano.</p>
+                <div class="card-vermelho desafio">
+                    <h4>Depuração no escuro</h4>
+                    <p>Não sabíamos em qual pino o sensor tinha ido parar. Só testando descobrimos que ele estava no conector de servo do shield, que cai no pino 10 do Arduino.</p>
+                </div>
+<pre class="codigo"><code>pinMode(sensor, INPUT_PULLUP);
+<span class="k">if</span> (digitalRead(sensor) == <span class="n">0</span> &amp;&amp; estado == <span class="n">0</span>) {
+  estado = <span class="n">1</span>;            <span class="c">// dispara a arma</span>
+  tempo_arma = millis();
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- 7. LEDS -->
+        <section class="cap creme" data-step="7" data-nome="LEDs de status">
+            <div class="cap-conteudo">
+                <h3>Feedback · Fase 07</h3>
+                <h1>60 LEDs que mostram o estado do robô</h1>
+                <p>Uma fita de 60 LEDs endereçáveis (biblioteca Adafruit NeoPixel) no pino <code>21</code>. Cada cor é um estado — dá para saber de longe se a arma está pronta. Clique para testar:</p>
+                <div class="led-botoes" id="led-botoes">
+                    <button type="button" data-led="boot">Boot (branco)</button>
+                    <button type="button" data-led="teste">Autoteste R→G→B</button>
+                    <button type="button" data-led="pronto">Pronto (amarelo)</button>
+                    <button type="button" data-led="arma">Arma ativa (vermelho)</button>
+                </div>
+                <div class="card-amarelo desafio">
+                    <h4>Direcionamento de energia</h4>
+                    <p>As baterias estavam acabando rápido demais, e a arma ficava lenta. A solução foi tirar energia dos LEDs e mandar para onde importa: o brilho da fita ficou limitado em <code>20</code> de <code>255</code>, enquanto o motor da arma avança com PWM máximo (<code>255</code>). Resultado: <strong>arma mais rápida e bateria durando a partida inteira</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. ARMA -->
+        <section class="cap creme" id="arma" data-step="8" data-nome="Arma">
+            <div class="cap-conteudo">
+                <h3>Especificações · Fase 08</h3>
+                <h1>Arma escolhida</h1>
+                <p>A arma é <strong>uma única estrutura em MDF cortada a laser</strong>, com <strong>um motor</strong>: ele gira uma engrenagem que empurra a barra (cremalheira) <strong>para fora do robô</strong> e depois a puxa <strong>de volta para dentro</strong>. Na ponta da barra, <strong>várias agulhas coladas</strong> para estourar o balão do adversário.</p>
+                <figure class="foto-real">
+                    <img src="img/real/prototipo-mdf.jpg" alt="Mecanismo da arma em MDF: engrenagem, motor e barra inclinada" style="object-position: center 30%">
+                    <figcaption>O mecanismo na bancada: motor + engrenagem de MDF movendo a barra pela guia inclinada.</figcaption>
+                </figure>
+                <p>Um ciclo completo leva <strong>cerca de 15 segundos</strong>, controlado por uma <strong>máquina de estados não bloqueante</strong> com <code>millis()</code> (versão <strong>BlockTron 2 — arma rápida</strong>):</p>
+
+                <div class="maquina" id="maquina">
+                    <div class="estado" data-e="0"><b>0</b> Pronto</div>
+                    <div class="estado" data-e="1"><b>1</b> Golpe<small>255 PWM · 600 ms</small></div>
+                    <div class="estado" data-e="2"><b>2</b> Travada<small>12,5 s</small></div>
+                    <div class="estado" data-e="3"><b>3</b> Recolhe<small>200 PWM · 550 ms</small></div>
+                </div>
+                <button type="button" class="primeiro btn-disparar" id="btn-disparar">Simular disparo</button>
+                <p class="nota">Na simulação, a espera de 12,5 s está acelerada.</p>
+
+                <div class="card-vermelho desafio">
+                    <h4>Por que não usar <code>delay()</code>?</h4>
+                    <p>Um <code>delay(600)</code> congelaria o robô inteiro: ele pararia de ler o Bluetooth bem no meio do ataque. Com <code>millis()</code>, movimento, sensor e arma rodam "ao mesmo tempo" no mesmo <code>loop()</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. CARCAÇA -->
+        <section class="cap creme" data-step="9" data-nome="Carcaça LEGO + balão">
+            <div class="cap-conteudo">
+                <h3>Estilo LEGO · Fase 09</h3>
+                <h1>Nasce o <span>Emmet</span></h1>
+                <p>Por fim, a cabeça de minifigura cobre toda a eletrônica: rosto amarelo, cabelo marrom e o balão no topo. No fim, ficou igualzinha à cabeça do <strong>Emmet</strong>, de <em>Uma Aventura LEGO</em> — e foi assim que o robô passou a ser chamado na arena.</p>
+                <p>Use a <strong>visão raio-X</strong> para ver tudo o que está lá dentro.</p>
+
+                <h2 class="subtitulo">O desafio da carcaça: fazer todos os sensores pegarem</h2>
+                <p>Com só dois sensores de cada lado, um toque no lugar "errado" da lateral não seria detectado. Então projetamos a carcaça para que <strong>qualquer ponto da lateral</strong> acione a arma:</p>
+                <ul class="lista-casca">
+                    <li><b>Base</b> de MDF, onde ficam os sensores.</li>
+                    <li><b>Estrutura</b> de papelão: 4 colunas principais nas laterais e o teto também de papelão.</li>
+                    <li><b>Laterais</b> de EVA com uma camada de papelão colada por dentro, para ficarem firmes e precisas.</li>
+                    <li>As laterais são <strong>coladas apenas no teto</strong> — funcionam como uma <strong>dobradiça</strong>: encostou em qualquer lugar, a lateral gira e pressiona os sensores da base.</li>
                 </ul>
+
+                <figure class="dobradica">
+                    <svg viewBox="0 0 320 210" aria-label="Corte da carcaça: laterais presas só no teto funcionam como dobradiça e pressionam os sensores">
+                        <rect x="40" y="168" width="240" height="10" rx="2" class="d-mdf"/>
+                        <rect x="44" y="34" width="232" height="8" rx="2" class="d-papelao"/>
+                        <rect x="58" y="42" width="8" height="126" class="d-papelao"/>
+                        <rect x="254" y="42" width="8" height="126" class="d-papelao"/>
+                        <rect x="46" y="150" width="9" height="18" rx="2" class="d-sensor"/>
+                        <rect x="265" y="150" width="9" height="18" rx="2" class="d-sensor d-sensor-dir"/>
+                        <g class="d-lateral d-esq">
+                            <rect x="34" y="36" width="9" height="130" rx="2" class="d-eva"/>
+                            <line x1="41" y1="40" x2="41" y2="162" class="d-forro"/>
+                        </g>
+                        <g class="d-lateral d-dir">
+                            <rect x="277" y="36" width="9" height="130" rx="2" class="d-eva"/>
+                            <line x1="279" y1="40" x2="279" y2="162" class="d-forro"/>
+                        </g>
+                        <circle cx="38" cy="38" r="4" class="d-pivo"/>
+                        <circle cx="282" cy="38" r="4" class="d-pivo"/>
+                        <g class="d-toque d-toque-esq"><path d="M2 110 H24 M16 102 L24 110 L16 118"/></g>
+                        <g class="d-toque d-toque-dir"><path d="M318 80 H296 M304 72 L296 80 L304 88"/></g>
+                        <text x="160" y="26" class="d-txt">teto de papelão</text>
+                        <text x="160" y="198" class="d-txt">base de MDF</text>
+                        <text x="160" y="104" class="d-txt">colunas de papelão</text>
+                        <text x="70" y="160" class="d-txt d-esq-txt">sensor</text>
+                        <text x="20" y="22" class="d-txt d-esq-txt">dobradiça</text>
+                    </svg>
+                    <figcaption>Corte da carcaça: a lateral de EVA + papelão fica presa só no teto. Um toque em qualquer altura faz ela girar e apertar o sensor da base.</figcaption>
+                </figure>
+                <figure class="foto-real">
+                    <img src="img/real/blocktron-arena.jpg" alt="Blocktron pronto, segurado na arena do NEXT FIAP">
+                    <figcaption>O Emmet de verdade, pronto para entrar na arena.</figcaption>
+                </figure>
+                <p class="lead">Do rabisco à máquina: 9 fases, 4 motores, 4 sensores e incontáveis horas de depuração.</p>
             </div>
-            <div class="aplicada">
-                <h2>Aplicada no Robô</h2>
-                <h4>A arma é aplicada nas laterais do robô, sendo composta por:</h4>
-                <ol>
-                    <li>Um servo motor de alto torque fixado na estrutura interna.</li>
-                    <li>Uma barra de aço acoplada rigidamente ao eixo do servo.</li>
-                    <li>Sistema de fixação reforçado para suportar impacto e vibração.</li>
-                    <li>A barra fica posicionada de forma que, ao girar, ela projeta golpes para a parte frontal do robô.</li>
-                    <h4>Estruturalmente</h4>
-                    <ul>
-                        <li>O servo é preso em uma base rígida (chassi interno).</li>
-                        <li>A barra atravessa uma abertura lateral.</li>
-                        <li>O centro de rotação fica alinhado com a estrutura para evitar empenamento.</li>
-                        <li>Se forem duas armas (uma de cada lado), elas giram simultaneamente.</li>
-                    </ul>
-                </ol>
-            </div>
+        </section>
+    </main>
+
+    <div class="lego-faixa"></div>
+
+    <!-- ===================== DESAFIOS ===================== -->
+    <section class="desing" id="desafios">
+        <h3>O que foi difícil de verdade</h3>
+        <h1>Problemas que resolvemos <span>no caminho</span></h1>
+        <div class="grade-desafios">
+            <article class="card-vermelho"><b>01</b><h4>Latência de comando</h4><p>17 ms de <code>delay</code> escondidos em cada acionamento de motor. Corrigido para microssegundos.</p></article>
+            <article class="card-amarelo"><b>02</b><h4>Curvas travadas</h4><p>Girar no lugar parava o robô. Criamos curva em arco mantendo o avanço.</p></article>
+            <article class="card-azul"><b>03</b><h4>Perda de conexão</h4><p>Failsafe de 250 ms: sem sinal do app, os motores param sozinhos.</p></article>
+            <article class="card-azul"><b>04</b><h4>Controle digital</h4><p>Botões só davam liga/desliga. Passamos para joystick analógico, com mixagem arcade drive no Arduino.</p></article>
+            <article class="card-vermelho"><b>05</b><h4>Arma em MDF</h4><p>Transformar a rotação do motor em avanço e recuo da barra de agulhas, com engrenagem e guia cortadas a laser.</p></article>
+            <article class="card-amarelo"><b>06</b><h4>Bateria acabando</h4><p>Direcionamos a energia: LEDs com brilho baixo, motor da arma no máximo. Arma mais rápida e bateria durando mais.</p></article>
+            <article class="card-azul"><b>07</b><h4>Sensores que não pegavam</h4><p>Só 2 sensores por lado. Laterais de EVA presas só no teto viram dobradiça: qualquer toque aciona.</p></article>
+            <article class="card-vermelho"><b>08</b><h4>Carcaça leve e firme</h4><p>Papelão na estrutura, EVA forrado com papelão nas laterais e MDF só na base.</p></article>
+            <article class="card-amarelo"><b>09</b><h4>Pino desconhecido</h4><p>Descobrimos testando que o sensor estava no conector de servo do shield — pino 10.</p></article>
         </div>
     </section>
-    
-    
-    <!-- QUINTA seção -->
-    <section class="galeria" id="Galeria">
-        <h3>GALERIA</h3>
-        <h1>Visual principal do Blocktron</h1>
-        <h2>Esta é a peça central da apresentação. O visual foi valorizado em um layout moderno, com moldura inspirada em brinquedos de montar.</h2>
-        <div class="galeria-robo">
-            <img src="img/site.SPRINT - cópia/image 4.png" class="galeria-robo-2" alt="">
-            <img src="img/site.SPRINT - cópia/lego_robo_site/robo-lego.jpeg" class="galeria-robo-2" alt="">
-            <img src="img/site.SPRINT - cópia/image 5.png" class="galeria-robo-2" alt="">
-            <img src="img/site.SPRINT - cópia/image 9.png" class="galeria-robo-2" alt="">
-            <img src="img/site.SPRINT - cópia/image 12.png" class="galeria-robo-2" alt="">
-            <img src="img/site.SPRINT - cópia/image 14.png" class="galeria-robo-2" alt=""> 
-    </div>
-       
 
-
+    <!-- ===================== BATALHAS ===================== -->
+    <section class="arena" id="batalhas">
+        <h3>Na arena</h3>
+        <h1>Em <span>batalha</span></h1>
+        <h2>Tudo o que foi testado na bancada, colocado à prova na arena do NEXT FIAP 2026 — com a plateia em volta.</h2>
+        <div class="classificados">
+            <img src="img/real/classificados.jpg" alt="Equipe Blocktron com o Emmet após se classificar nas eliminatórias" loading="lazy">
+            <div>
+                <h3>Eliminatórias</h3>
+                <h4>Classificados para a final</h4>
+                <p>Depois da fase de grupos, a equipe Blocktron garantiu a vaga na final do NEXT. Na foto, a equipe com o Emmet logo depois da classificação, com a tabela dos grupos no telão.</p>
+            </div>
+        </div>
+        <div class="videos">
+            <figure class="video"><video controls preload="metadata" playsinline poster="videos/batalha-1.png" src="videos/batalha-1.mp4"></video><figcaption>Emmet × adversário</figcaption></figure>
+            <figure class="video"><video controls preload="metadata" playsinline poster="videos/batalha-2.png" src="videos/batalha-2.mp4"></video><figcaption>Balão contra balão</figcaption></figure>
+            <figure class="video foto"><img src="img/real/arena-publico.jpg" alt="Arena do NEXT FIAP 2026 lotada durante uma batalha" loading="lazy"><figcaption>A arena lotada</figcaption></figure>
+        </div>
     </section>
 
+    <!-- ===================== FINAL ===================== -->
+    <section class="final" id="final">
+        <canvas id="confete"></canvas>
+        <h3>Final · NEXT FIAP 2026</h3>
+        <h1 class="titulo-final"><span>2º</span> lugar</h1>
+        <h2>Da folha em branco ao pódio: medalhas, R$ 3.000 para o grupo e o Blocktron inteiro — com o balão ainda no lugar.</h2>
+        <div class="mosaico-final">
+            <figure class="grande"><img src="img/real/podio.jpg" alt="Equipe Blocktron no pódio do NEXT FIAP 2026" loading="lazy"></figure>
+            <figure><img style="object-position: center 30%" src="img/real/equipe-premio.jpg" alt="Equipe com o prêmio de R$ 3.000 e o Blocktron" loading="lazy"></figure>
+            <figure><img src="img/real/medalhas.jpg" alt="Medalhas do NEXT FIAP 2026 ao lado do Blocktron" loading="lazy"></figure>
+        </div>
+    </section>
 
-    
+    <!-- ===================== GALERIA ===================== -->
+    <section class="galeria" id="galeria">
+        <h3>Galeria</h3>
+        <h1>Do conceito à arena</h1>
+        <h2>Renders do conceito, protótipos e o robô real.</h2>
+        <div class="galeria-robo">
+            <img src="img/real/blocktron-arena.jpg" class="galeria-robo-2" alt="Blocktron na arena" loading="lazy">
+            <img src="img/real/prototipo-mdf.jpg" class="galeria-robo-2" alt="Protótipo em MDF" loading="lazy">
+            <img src="img/site.SPRINT - cópia/lego_robo_site/robo-lego.jpeg" class="galeria-robo-2" alt="Render do conceito na arena" loading="lazy">
+            <img src="img/site.SPRINT - cópia/image 9.png" class="galeria-robo-2" alt="Render de conceito" loading="lazy">
+            <img src="img/site.SPRINT - cópia/image 12.png" class="galeria-robo-2" alt="Render de conceito" loading="lazy">
+            <img src="img/site.SPRINT - cópia/image 14.png" class="galeria-robo-2" alt="Render de conceito" loading="lazy">
+        </div>
+    </section>
+
+    <footer class="rodape">
+        <img src="img/site.SPRINT - cópia/img.logo.png" alt="Blocktron">
+        <p>Arduino Mega · C++ · Bluetooth · RoboRemo · Adafruit NeoPixel · HTML/CSS/JS</p>
+        <a href="https://github.com/AnaBia-Kurihara/site-robo-lego" target="_blank" rel="noopener">Código no GitHub</a>
+    </footer>
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
